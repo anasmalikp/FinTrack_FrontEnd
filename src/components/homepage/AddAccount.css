@@ -1,0 +1,62 @@
+.trans_cont{
+    
+    
+    color: white;
+}
+.main_trans{
+    width: 100vw;
+    height: 90vh;
+    background-color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.add_exp_inc{
+    width: 60vw;
+    border: 1px solid white;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+    border-radius: 10px;
+}
+.wallet_cont{
+    background-color: black;
+    color: white;
+    height: 90vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.amt{
+    font-size: 50px;
+    font-family: monospace;
+}
+.bal{
+    height: 30%;
+    box-shadow: 0px 0px 5px lightblue;
+    width: 60%;
+    text-align: center;
+    border-radius: 20px;
+}
+.his_cont{
+    width: 100vw;
+    height: 90vh;
+    background-color: black;
+}
+.his_trans{
+    border: 1px solid white;
+    margin: 10px;
+    border-radius: 10px;
+    display: flex;
+    color: white;
+    justify-content: space-around;
+}
+.his_head{
+    margin: 0;
+    color: white;
+    text-align: center;
+}

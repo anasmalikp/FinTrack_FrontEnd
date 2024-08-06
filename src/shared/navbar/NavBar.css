@@ -1,0 +1,27 @@
+.navbar_cont{
+    width: 100vw;
+    background-color: black;
+    height: 10vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    border-bottom:1px solid white ;
+}
+.navbar_opt_cont{
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+}
+.navbar_opt{
+    width: 30vw;
+    color: aliceblue;
+    text-align: center;
+    border: 1px solid white;
+    /* height: 50%; */
+    border-radius: 5px;
+}
+.nav_title{
+    margin: 0;
+    color: white;
+    text-align: center;
+}
