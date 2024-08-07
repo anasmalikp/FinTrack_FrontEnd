@@ -8,6 +8,7 @@
     height: 90vh;
     background-color: black;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
 }
@@ -59,4 +60,7 @@
     margin: 0;
     color: white;
     text-align: center;
+}
+.modal_contents{
+    margin-bottom:20px
 }

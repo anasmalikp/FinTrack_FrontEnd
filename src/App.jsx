@@ -6,6 +6,8 @@ import Registration from './pages/registration/Registration'
 import { useState } from 'react'
 import { FinTrackContext } from '../Context'
 import AddAccount from './components/homepage/AddAccount'
+import Wallet from './components/homepage/Wallet'
+import History from './components/homepage/History'
 
 function App() {
 
@@ -19,6 +21,8 @@ function App() {
         <Route path='/'>
           <Route index element={<Registration />} />
           <Route path='/home/add_trans' element={<AddAccount />} />
+          <Route path='/home/wallet' element={<Wallet />} />
+          <Route path='/home/history' element={<History />} />
         </Route>
       </Routes>
       </FinTrackContext.Provider>
