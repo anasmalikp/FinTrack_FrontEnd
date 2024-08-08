@@ -3,6 +3,7 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { useNavigate } from 'react-router-dom';
 import { Login } from '../../services/UserServices';
+import Cookies from 'js-cookie';
 
 const Log = () => {
     const [user, setUser] = useState({
@@ -16,7 +17,8 @@ const Log = () => {
     const handleLogin = async (e) => {
         e.preventDefault()
         const response = await Login(user)
-        if (response == 200) {
+        if (response!=null) {
+            Cookies.set('token',response)
             navigate('/home/add_trans')
         } else {
             alert("Login Failed")
@@ -27,7 +29,7 @@ const Log = () => {
             <form onSubmit={handleLogin} style={{ height: '30vh' }} className='reg_form'>
                 <TextField required onChange={e => setUser({ ...user, email: e.target.value })} id="outlined-basic" label="E-Mail" variant="outlined" />
                 <TextField required onChange={e => setUser({ ...user, password: e.target.value })} id="outlined-basic" label="Password" variant="outlined" />
-                <Button variant="contained" type='submit' >Log In</Button>
+                <Button variant="contained" type='submit'>Log In</Button>
             </form>
         </>
     )

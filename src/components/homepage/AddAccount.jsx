@@ -1,10 +1,12 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './AddAccount.css';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import { GetExp, GetIncs } from '../../services/AccountServices';
+import { AddTransaction } from '../../services/TransactionServices';
 
 const style = {
   position: 'absolute',
@@ -21,15 +23,50 @@ const style = {
 const AddAccount = () => {
     const [buttonval, setButtonval] = useState("")
     const [open, setOpen] = useState(false)
+    const [value, setValue] = useState({})
+    const [exps, setExps] = useState([])
+    const [incs, setIncs]= useState([])
+
+    const GetExpenses = async()=>{
+      const response = await GetExp()
+      if(response!=null){
+        setExps(response)
+        console.log(response)
+      }
+    }
+
+    const GetIncomes = async()=>{
+      const response = await GetIncs()
+      if(response!= null){
+        setIncs(response)
+      }
+    }
+
+    useEffect(()=>{
+      GetExpenses()
+      GetIncomes()
+    },[])
     
     const handleClose = ()=> {
       setOpen(false)
       setButtonval("")
+      setValue({})
     }
 
     const handleOpen = (val)=>{
       setButtonval(val)
       setOpen(true)
+    }
+
+    const handleTransaction = async()=>{
+      if(value=={}){
+        alert("please fill necessary fields")
+      }else{
+        const response = await AddTransaction(value)
+        if(response!=200){
+          alert("something went wrong")
+        }
+      }
     }
 
   return (
@@ -50,30 +87,32 @@ const AddAccount = () => {
     <Typography className='modal_contents' id="modal-modal-title" variant="h6" component="h2">
       Add an expense
     </Typography>
-    <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-    <TextField className='modal_contents' id="outlined-basic" label="Amount" variant="outlined" />
-    <select className='modal_contents' >
-      <option selected disabled >Choose an account</option>
-      <option>Petrol</option>
-      <option>Bus Fair</option>
+    
+    <TextField onChange={e=>setValue({...value, amt:e.target.value})} className='modal_contents' id="outlined-basic" label="Amount" variant="outlined" />
+    <select defaultValue='1' onChange={e=> setValue({...value, acid:e.target.value})} className='modal_contents' >
+      <option disabled value='1' >Choose an account</option>
+      {exps?.map(val=>(
+        <option value={val.id}>{val.transactionName}</option>
+      ))}
     </select>
-    <Button className='modal_contents' variant='contained'>Save Transaction</Button>
-    </Typography>
+    <Button onClick={handleTransaction} className='modal_contents' variant='contained'>Save Transaction</Button>
+    
   </Box>
   ) : buttonval == "inc" ? (
     <Box sx={style}>
     <Typography className='modal_contents' id="modal-modal-title" variant="h6" component="h2">
       Add an income
     </Typography>
-    <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-    <TextField className='modal_contents' id="outlined-basic" label="Amount" variant="outlined" />
-    <select className='modal_contents' >
-      <option selected disabled >Choose an account</option>
-      <option>Salary</option>
-      <option>Commission</option>
+    
+    <TextField onChange={e=>setValue({...value, amt:e.target.value})} className='modal_contents' id="outlined-basic" label="Amount" variant="outlined" />
+    <select defaultValue='1'  onChange={e=> setValue({...value, acid:e.target.value})} className='modal_contents' >
+      <option disabled value='1' >Choose an account</option>
+      {incs?.map(val=>(
+        <option value={val.id}>{val.transactionName}</option>
+      ))}
     </select>
-    <Button className='modal_contents' variant='contained'>Save Transaction</Button>
-    </Typography>
+    <Button onClick={handleTransaction} className='modal_contents' variant='contained'>Save Transaction</Button>
+    
   </Box>
   ) : (
     <Box sx={style}>

@@ -13,7 +13,7 @@ export const Register = async(user)=>{
 export const Login = async(user)=>{
     try{
         const response = await axios.post("https://localhost:7295/api/User/login", user)
-        return response.status
+        return response.data
     }
     catch(err){
         console.log(err)
