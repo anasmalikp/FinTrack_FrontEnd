@@ -1,7 +1,7 @@
 import axios from "axios"
 import Cookies from "js-cookie"
 
-export const AddAccount = async(ac)=>{
+export const AddaAccount = async(ac)=>{
     try{
         const response = await axios.post("https://localhost:7295/api/Account",ac,{
             headers:{
