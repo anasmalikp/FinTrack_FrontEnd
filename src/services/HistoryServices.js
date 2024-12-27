@@ -3,7 +3,7 @@ import Cookies from "js-cookie"
 
 export const GetHistory = async() =>{
     try{
-        const response = await axios.get("https://localhost:7295/api/Transaction",{
+        const response = await axios.get("https://moneymgt.onrender.com/api/Transaction",{
             headers:{
                 "Authorization":`Bearer ${Cookies.get('token')}`
             }

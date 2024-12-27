@@ -1,5 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { GetHistory } from '../../services/HistoryServices'
+import { FinTrackContext } from '../../../Context'
+import Loader from '../../shared/loader/Loader'
 
 const History = () => {
   const [history, setHistory] = useState([])
@@ -7,6 +9,7 @@ const History = () => {
   const GetTransHistory = async () => {
     const response = await GetHistory()
     if (response != null) {
+      
       setHistory(response)
     }
   }
@@ -26,19 +29,21 @@ const History = () => {
   useEffect(() => {
     GetTransHistory()
   }, [])
+  
   return (
     <>
       <div className='his_cont'>
         <p className='his_head'>
           History
         </p>
-        {history?.map(val => (
+        {history.length == 0 ? <Loader /> :
+        history?.map(val => (
           <div key={val.id} className='his_trans'>
             <p>{val.transactionName}</p>
             {val.categoryid == 1 ? (
-              <p>- {val.amt}</p>
+              <p>- {val.amount}</p>
             ) : (
-              <p>+ {val.amt}</p>
+              <p>+ {val.amount}</p>
             )}
             <div className='his_date'>
               <p>

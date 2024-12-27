@@ -1,9 +1,13 @@
 import axios from "axios"
 import Cookies from "js-cookie"
 
-export const AddTransaction = async(val)=>{
+export const AddTransaction = async(val, isBank)=>{
     try{
-        const response = await axios.post(`https://localhost:7295/api/Transaction?amount=${val.amt}&accountid=${val.acid}`,{},{
+        let date = new Date().toISOString();
+        val = {...val, transactionTime:date}
+        console.log(val)
+        console.log(`https://moneymgt.onrender.com/api/Transaction?isBank=${isBank}`)
+        const response = await axios.post(`https://moneymgt.onrender.com/api/Transaction?isBank=${isBank}`,val,{
             headers:{
                 "Authorization":`Bearer ${Cookies.get('token')}`
             }

@@ -10,7 +10,8 @@ const Reg = () => {
     const {setIsLog} = useContext(FinTrackContext)
     const [user, setUser] = useState({})
     const [pass,setPass]= useState("")
-    const handleReg = async()=>{
+    const handleReg = async(e)=>{
+      e.preventDefault();
         if(user.password == pass){
           const response = await Register(user)
         if(response==200){
@@ -25,14 +26,21 @@ const Reg = () => {
     }
   return (
     <>
+    <div style={{padding:'20px'}}>
+        <div className='log_reg_text'>
+          <h1>
+            Tell us<br />Who you are!
+          </h1>
+        </div>
         <form onSubmit={handleReg} className='reg_form'>
-        <TextField required onChange={e=> setUser({...user,username:e.target.value})} id="outlined-basic" label="Username" variant="outlined" />
-        <TextField required onChange={e=> setUser({...user,email:e.target.value})} id="outlined-basic" label="E-Mail" variant="outlined" />
-        <TextField required onChange={e=> setUser({...user,password:e.target.value})} id="outlined-basic" label="Password" variant="outlined" />
-        <TextField required onChange={e=> setPass(e.target.value)} id="outlined-basic" label="Confirm Password" variant="outlined" />
-        <Button variant="contained" type='submit' >Register</Button>
+        <TextField className='inputfld' required onChange={e=> setUser({...user,username:e.target.value})} id="outlined-basic" label="Username" variant="standard" />
+        <TextField className='inputfld' required onChange={e=> setUser({...user,email:e.target.value})} id="outlined-basic" label="E-Mail" variant="standard" />
+        <TextField className='inputfld' required onChange={e=> setUser({...user,password:e.target.value})} id="outlined-basic" label="Password" variant="standard" />
+        <TextField className='inputfld' required onChange={e=> setPass(e.target.value)} id="outlined-basic" label="Confirm Password" variant="standard" />
+        <button type='submit' className='btnreg'>Register</button>
         <p onClick={()=>setIsLog(true)}>Already have an account? Click here</p>
         </form>
+    </div>
     </>
   )
 }

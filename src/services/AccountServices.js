@@ -1,9 +1,9 @@
 import axios from "axios"
 import Cookies from "js-cookie"
 
-export const AddaAccount = async(ac)=>{
+export const AddaAccount = async(ac, isBank)=>{
     try{
-        const response = await axios.post("https://localhost:7295/api/Account",ac,{
+        const response = await axios.post(`https://moneymgt.onrender.com/api/Account`,ac,{
             headers:{
                 "Authorization": `Bearer ${Cookies.get('token')}`
             }
@@ -17,7 +17,7 @@ export const AddaAccount = async(ac)=>{
 
 export const GetExp = async()=>{
     try{
-        const response = await axios.get("https://localhost:7295/api/Account?catId=1",{
+        const response = await axios.get("https://moneymgt.onrender.com/api/Account?catId=1",{
             headers:{
                 "Authorization":`Bearer ${Cookies.get('token')}`
             }
@@ -31,7 +31,7 @@ export const GetExp = async()=>{
 
 export const GetIncs = async()=>{
     try{
-        const response = await axios.get("https://localhost:7295/api/Account?catId=2",{
+        const response = await axios.get("https://moneymgt.onrender.com/api/Account?catId=2",{
             headers:{
                 "Authorization":`Bearer ${Cookies.get('token')}`
             }

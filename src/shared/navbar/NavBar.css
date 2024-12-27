@@ -1,11 +1,12 @@
 .navbar_cont{
+    padding: 5px;
     width: 100vw;
-    background-color: black;
+    background-color: #503A3A;
     height: 10vh;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    border-bottom:1px solid white ;
+    border-bottom:1px solid #FEF4F4 ;
 }
 .navbar_opt_cont{
     display: flex;
@@ -14,14 +15,26 @@
 }
 .navbar_opt{
     width: 30vw;
-    color: aliceblue;
+    color: #503A3A;
     text-align: center;
     border: 1px solid white;
-    /* height: 50%; */
+    background: #FEF4F4;
     border-radius: 5px;
 }
 .nav_title{
     margin: 0;
-    color: white;
+    color: #FEF4F4;
     text-align: center;
+}
+.title_cont{
+    display: flex;
+    justify-content: space-between;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.logoutBtn{
+    background-color: transparent;
+    color: #FEF4F4;
+    border: none;
+    font-size: larger;
 }

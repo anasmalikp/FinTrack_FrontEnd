@@ -1,24 +1,23 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { useNavigate } from 'react-router-dom';
 import { Login } from '../../services/UserServices';
 import Cookies from 'js-cookie';
+import { FinTrackContext } from '../../../Context';
 
 const Log = () => {
-    const [user, setUser] = useState({
-        id: 0,
-        username: "",
-        email: "",
-        password: "",
-        walletBalance: 0
-    })
+    const [user, setUser] = useState({})
     const navigate = useNavigate()
+    const {setIsLoggedIn,setIsLog} = useContext(FinTrackContext)
     const handleLogin = async (e) => {
         e.preventDefault()
+        console.log(user)
         const response = await Login(user)
-        if (response!=null) {
-            Cookies.set('token',response)
+        if (response.status==200) {
+            Cookies.set('token',response.data.token)
+            Cookies.set('username', response.data.username)
+            setIsLoggedIn(true);
             navigate('/home/add_trans')
         } else {
             alert("Login Failed")
@@ -26,11 +25,19 @@ const Log = () => {
     }
     return (
         <>
+        <div style={{padding:'20px'}}>
+            <div className='log_reg_text'>
+                <h1>
+                    Log in<br />to your Account
+                </h1>
+            </div>
             <form onSubmit={handleLogin} style={{ height: '30vh' }} className='reg_form'>
-                <TextField required onChange={e => setUser({ ...user, email: e.target.value })} id="outlined-basic" label="E-Mail" variant="outlined" />
-                <TextField required onChange={e => setUser({ ...user, password: e.target.value })} id="outlined-basic" label="Password" variant="outlined" />
-                <Button variant="contained" type='submit'>Log In</Button>
+                <TextField className='inputfld' required onChange={e => setUser({ ...user, email: e.target.value })} id="outlined-basic" label="E-Mail" variant="standard" />
+                <TextField className='inputfld' required onChange={e => setUser({ ...user, password: e.target.value })} id="outlined-basic" label="Password" variant="standard" />
+                <button type='submit' className='btnreg'>Log In</button>
+                <p onClick={()=> setIsLog(false)}>Click here if you are new here</p>
             </form>
+        </div>
         </>
     )
 }

@@ -2,7 +2,7 @@ import axios from "axios"
 
 export const Register = async(user)=>{
     try{
-        const response = await axios.post("https://localhost:7295/api/User",user)
+        const response = await axios.post("https://moneymgt.onrender.com/api/User/registerusers",user)
         return response.status
     }
     catch(err){
@@ -12,8 +12,8 @@ export const Register = async(user)=>{
 
 export const Login = async(user)=>{
     try{
-        const response = await axios.post("https://localhost:7295/api/User/login", user)
-        return response.data
+        const response = await axios.post("https://moneymgt.onrender.com/api/User/loginusers", user)
+        return response
     }
     catch(err){
         console.log(err)
