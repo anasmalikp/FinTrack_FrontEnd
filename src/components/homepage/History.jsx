@@ -40,10 +40,10 @@ const History = () => {
         history?.map(val => (
           <div key={val.id} className='his_trans'>
             <p>{val.transactionName}</p>
-            {val.categoryid == 1 ? (
-              <p>- {val.amount}</p>
+            {val.transactionType == 1 ? (
+              <p><b>- {val.amount}</b></p>
             ) : (
-              <p>+ {val.amount}</p>
+              <p><b>+ {val.amount}</b></p>
             )}
             <div className='his_date'>
               <p>

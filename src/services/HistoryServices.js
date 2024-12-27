@@ -8,7 +8,9 @@ export const GetHistory = async() =>{
                 "Authorization":`Bearer ${Cookies.get('token')}`
             }
         })
-        return response.data
+        console.log(response.data);
+        
+        return response.data.sort((a, b) => new Date(b.transactionTime) - new Date(a.transactionTime));
     }
     catch(err){
         console.log(err)

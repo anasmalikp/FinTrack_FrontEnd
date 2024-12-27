@@ -28,11 +28,11 @@ const Wallet = () => {
           <section className='wallet_bals_cont'>
             <section className='wallet_bals'>
               <p>Cash Balance:</p>
-              <p className='amt'>{bal.cashBalance}</p>
+              <p className='amt'>₹ {bal.cashBalance}</p>
             </section>
             <section className='wallet_bals'>
               <p>Bank Balance:</p>
-              <p className='amt'>{bal.bankBalance}</p>
+              <p className='amt'>₹ {bal.bankBalance}</p>
             </section>
           </section>
         )}
