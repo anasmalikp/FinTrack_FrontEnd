@@ -64,6 +64,11 @@
     height: 90vh;
     background-color: #FEF4F4;
 }
+.selectBox{
+    height: 30px;
+    background-color: transparent;
+    border-radius: 10px;
+}
 .his_trans{
     border: 1px solid #503A3A;
     margin: 10px;

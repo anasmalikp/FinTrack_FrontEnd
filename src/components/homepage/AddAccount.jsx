@@ -13,14 +13,14 @@ const style = {
   position: 'absolute',
   top: '50%',
   left: '50%',
-  width: 200,
+  width: '90%',
   transform: 'translate(-50%, -50%)',
   bgcolor: 'background.paper',
   border: '2px solid #000',
   boxShadow: 24,
   borderRadius:8,
   p: 4,
-  height:'30vh',
+  height:'40vh',
   display:'flex',
   flexDirection:'column',
   justifyContent:'space-around'
@@ -113,12 +113,12 @@ const AddAccount = () => {
             </Typography>
 
             <TextField type='number' onChange={e => setValue({ ...value, amount: e.target.value })} className='modal_contents' id="outlined-basic" label="Amount" variant="standard" />
-              <select defaultValue='true' onChange={e=> setIsBank(e.target.value)}>
+              <select className='selectBox' defaultValue='true' onChange={e=> setIsBank(e.target.value)}>
                 <option value=''>Choose a Mode</option>
                 <option value='false'>Cash</option>
                 <option value='true'>Bank</option>
               </select>
-            <select defaultValue='1' onChange={e => setValue({ ...value, accountId: e.target.value })} className='modal_contents' >
+            <select defaultValue='1' onChange={e => setValue({ ...value, accountId: e.target.value })} className='modal_contents selectBox' >
               <option selected value='1' >Choose an account</option>
               {exps?.map(val => (
                 <option key={val.id} value={val.id}>{val.accountName}</option>
@@ -134,12 +134,12 @@ const AddAccount = () => {
             </Typography>
 
             <TextField type='number' onChange={e => setValue({ ...value, amount: e.target.value })} className='modal_contents' id="outlined-basic" label="Amount" variant="standard" />
-            <select defaultValue='true' onChange={e=> setIsBank(e.target.value)}>
+            <select className='selectBox' defaultValue='true' onChange={e=> setIsBank(e.target.value)}>
               <option value='' selected>Choose a Mode</option>
                 <option value='false'>Cash</option>
                 <option value='true'>Bank</option>
               </select>
-            <select onChange={e => setValue({ ...value, accountId: e.target.value })} className='modal_contents' >
+            <select onChange={e => setValue({ ...value, accountId: e.target.value })} className='modal_contents selectBox' >
               <option selected value='1' >Choose an account</option>
               {incs?.map(val => (
                 <option key={val.id} value={val.id}>{val.accountName}</option>
@@ -155,7 +155,7 @@ const AddAccount = () => {
             </Typography>
 
             <TextField onChange={e => setValue({ ...value, accountName: e.target.value })} className='modal_contents' id="outlined-basic" label="Account Name" variant="standard" />
-            <select onChange={e => setValue({ ...value, transactionType: e.target.value })} defaultValue='1' className='modal_contents' >
+            <select onChange={e => setValue({ ...value, transactionType: e.target.value })} defaultValue='1' className='modal_contents selectBox' >
               <option value='1' disabled >Choose an type</option>
               <option value={1}>Expense</option>
               <option value={2} >Income</option>
