@@ -10,6 +10,8 @@ const Wallet = () => {
     const response = await GetWallet()
     if(response!=null){
       setBal(response)
+      console.log(response);
+      
     }
   }
 
@@ -26,11 +28,11 @@ const Wallet = () => {
           <section className='wallet_bals_cont'>
             <section className='wallet_bals'>
               <p>Cash Balance:</p>
-              <p className='amt'>6000</p>
+              <p className='amt'>{bal.cashBalance}</p>
             </section>
             <section className='wallet_bals'>
               <p>Bank Balance:</p>
-              <p className='amt'>2000</p>
+              <p className='amt'>{bal.bankBalance}</p>
             </section>
           </section>
         )}
