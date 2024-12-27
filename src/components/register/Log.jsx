@@ -5,13 +5,16 @@ import { useNavigate } from 'react-router-dom';
 import { Login } from '../../services/UserServices';
 import Cookies from 'js-cookie';
 import { FinTrackContext } from '../../../Context';
+import Loader from '../../shared/loader/Loader';
 
 const Log = () => {
     const [user, setUser] = useState({})
     const navigate = useNavigate()
+    const [isLoading, setIsLoading] = useState(false);
     const {setIsLoggedIn,setIsLog} = useContext(FinTrackContext)
     const handleLogin = async (e) => {
         e.preventDefault()
+        setIsLoading(true)
         console.log(user)
         const response = await Login(user)
         if (response.status==200) {
@@ -22,6 +25,12 @@ const Log = () => {
         } else {
             alert("Login Failed")
         }
+        setIsLoading(false);
+    }
+    if(isLoading){
+        return (
+            <Loader />
+        )
     }
     return (
         <>
@@ -33,7 +42,7 @@ const Log = () => {
             </div>
             <form onSubmit={handleLogin} style={{ height: '30vh' }} className='reg_form'>
                 <TextField className='inputfld' required onChange={e => setUser({ ...user, email: e.target.value })} id="outlined-basic" label="E-Mail" variant="standard" />
-                <TextField className='inputfld' required onChange={e => setUser({ ...user, password: e.target.value })} id="outlined-basic" label="Password" variant="standard" />
+                <TextField type='password' className='inputfld' required onChange={e => setUser({ ...user, password: e.target.value })} id="outlined-basic" label="Password" variant="standard" />
                 <button type='submit' className='btnreg'>Log In</button>
                 <p onClick={()=> setIsLog(false)}>Click here if you are new here</p>
             </form>

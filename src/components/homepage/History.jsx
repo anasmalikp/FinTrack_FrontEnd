@@ -34,7 +34,7 @@ const History = () => {
     <>
       <div className='his_cont'>
         <p className='his_head'>
-          History
+          <b>Transaction History</b>
         </p>
         {history.length == 0 ? <Loader /> :
         history?.map(val => (
