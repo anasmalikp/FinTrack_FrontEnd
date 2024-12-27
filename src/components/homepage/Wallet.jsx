@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { GetWallet } from '../../services/WalletServices'
-import { FinTrackContext } from '../../../Context'
+import Cookies from 'js-cookie'
 import Loader from '../../shared/loader/Loader'
 
 const Wallet = () => {
@@ -23,7 +23,7 @@ const Wallet = () => {
 
     <div className="wallet_cont">
       <div className='bal'>
-        <h3>Hello User!</h3>
+        <h3>{Cookies.get('username') ?? "User"}</h3>
         {bal== null ? <Loader /> : (
           <section className='wallet_bals_cont'>
             <section className='wallet_bals'>
