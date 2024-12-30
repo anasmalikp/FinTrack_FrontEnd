@@ -13,6 +13,8 @@ const History = () => {
     } else {
       alert(response.message)
     }
+    console.log(response.data.data);
+    
   }
 
   const FormatDate = (datetime) => {
@@ -40,6 +42,7 @@ const History = () => {
         {history.length == 0 ? <Loader /> :
         history?.map(val => (
           <div key={val.id} className='his_trans'>
+            <p style={{fontSize:'small'}}>{val.isBank ? "Bank" : "Cash"}</p>
             <p>{val.transactionName}</p>
             {val.transactionType == 1 ? (
               <p><b>- {val.amount}</b></p>

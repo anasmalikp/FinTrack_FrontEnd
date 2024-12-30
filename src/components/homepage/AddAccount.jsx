@@ -85,7 +85,7 @@ const AddAccount = () => {
     if (value != {}) {
       const response = await AddaAccount(value)
       if (response == 200) {
-        alert("Account added successfully")
+        handleClose()
         setValue({})
         await GetExpenses()
         await GetIncomes()
