@@ -12,7 +12,7 @@ export const AddTransaction = async(val, isBank)=>{
                 "Authorization":`Bearer ${Cookies.get('token')}`
             }
         })
-        return response.status
+        return response
     }
     catch(err){
         console.log(err)

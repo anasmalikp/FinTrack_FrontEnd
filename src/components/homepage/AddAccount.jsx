@@ -74,8 +74,8 @@ const AddAccount = () => {
       alert("please fill necessary fields")
     } else {
       const response = await AddTransaction(value, isBank)
-      if (response != 200) {
-        alert("something went wrong")
+      if (response.data.statusCode != 201) {
+        alert(response.data.message)
       }
       handleClose()
     }
