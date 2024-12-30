@@ -8,9 +8,10 @@ const History = () => {
 
   const GetTransHistory = async () => {
     const response = await GetHistory()
-    if (response != null) {
-      
-      setHistory(response)
+    if (response.data.statusCode == 200) {
+      setHistory(response.data.data?.sort((a,b)=> new Date(a.transactionTime) - new Date(b.transactionTime)))      
+    } else {
+      alert(response.message)
     }
   }
 

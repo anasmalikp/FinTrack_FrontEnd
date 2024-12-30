@@ -17,14 +17,14 @@ const Reg = () => {
       setIsLoading(true);
         if(user.password == pass){
           const response = await Register(user)
-        if(response==200){
+        if(response.data.statusCode==201){
           setIsLog(true)
         }
         else{
-          alert("registration failed")
+          alert(response.data.message)
         }
         } else{
-          alert("password dont match")
+          alert("Password Doesn't Match")
         }
         setIsLoading(false);
     }
@@ -42,10 +42,10 @@ const Reg = () => {
           </h1>
         </div>
         <form onSubmit={handleReg} className='reg_form'>
-        <TextField className='inputfld' required onChange={e=> setUser({...user,username:e.target.value})} id="outlined-basic" label="Username" variant="standard" />
-        <TextField className='inputfld' required onChange={e=> setUser({...user,email:e.target.value})} id="outlined-basic" label="E-Mail" variant="standard" />
-        <TextField className='inputfld' required type='password' onChange={e=> setUser({...user,password:e.target.value})} id="outlined-basic" label="Password" variant="standard" />
-        <TextField className='inputfld' required type='password' onChange={e=> setPass(e.target.value)} id="outlined-basic" label="Confirm Password" variant="standard" />
+        <TextField className='inputfld' name="username" autocomplete="username" required onChange={e=> setUser({...user,username:e.target.value})} id="outlined-basic" label="Username" variant="standard" />
+        <TextField className='inputfld' type="email" name="email" autocomplete="email" required onChange={e=> setUser({...user,email:e.target.value})} id="outlined-basic" label="E-Mail" variant="standard" />
+        <TextField className='inputfld' name="new-password" autocomplete="new-password" required type='password' onChange={e=> setUser({...user,password:e.target.value})} id="outlined-basic" label="Password" variant="standard" />
+        <TextField className='inputfld' name="new-password" autocomplete="new-password" required type='password' onChange={e=> setPass(e.target.value)} id="outlined-basic" label="Confirm Password" variant="standard" />
         <button type='submit' className='btnreg'>Register</button>
         <p onClick={()=>setIsLog(true)}>Already have an account? Click here</p>
         </form>

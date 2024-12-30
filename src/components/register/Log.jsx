@@ -17,13 +17,13 @@ const Log = () => {
         setIsLoading(true)
         console.log(user)
         const response = await Login(user)
-        if (response.status==200) {
+        if (response.data.token != null) {
             Cookies.set('token',response.data.token)
             Cookies.set('username', response.data.username)
             setIsLoggedIn(true);
             navigate('/home/add_trans')
         } else {
-            alert("Login Failed")
+            alert(response.data.message)
         }
         setIsLoading(false);
     }
@@ -41,8 +41,8 @@ const Log = () => {
                 </h1>
             </div>
             <form onSubmit={handleLogin} style={{ height: '30vh' }} className='reg_form'>
-                <TextField className='inputfld' required onChange={e => setUser({ ...user, email: e.target.value })} id="outlined-basic" label="E-Mail" variant="standard" />
-                <TextField type='password' className='inputfld' required onChange={e => setUser({ ...user, password: e.target.value })} id="outlined-basic" label="Password" variant="standard" />
+                <TextField className='inputfld' name='email' required onChange={e => setUser({ ...user, email: e.target.value })} id="outlined-basic" label="E-Mail" variant="standard" />
+                <TextField type='password' name='current-password' autoComplete='current-password' className='inputfld' required onChange={e => setUser({ ...user, password: e.target.value })} id="outlined-basic" label="Password" variant="standard" />
                 <button type='submit' className='btnreg'>Log In</button>
                 <p onClick={()=> setIsLog(false)}>Click here if you are new here</p>
             </form>

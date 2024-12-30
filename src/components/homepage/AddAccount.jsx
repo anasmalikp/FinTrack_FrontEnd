@@ -36,15 +36,19 @@ const AddAccount = () => {
 
   const GetExpenses = async () => {
     const response = await GetExp()
-    if (response != null) {
-      setExps(response)
+    if (response.statusCode == 200) {
+      setExps(response.data)
+    } else {
+      alert(response.message)
     }
   }
 
   const GetIncomes = async () => {
     const response = await GetIncs()
-    if (response != null) {
-      setIncs(response)
+    if (response.statusCode == 200) {
+      setIncs(response.data)
+    } else {
+      alert(response.message)
     }
   }
 
